@@ -1,38 +1,47 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export default function HelpSection() {
   const commands = [
     {
-      category: 'Navigation',
+      category: "Navigation",
       items: [
-        { cmd: 'about', desc: 'Show information about me' },
-        { cmd: 'projects', desc: 'List all projects' },
-        { cmd: 'projects [filter]', desc: 'Filter projects (e.g., projects fintech)' },
-        { cmd: 'project [id]', desc: 'View specific project details' },
-        { cmd: 'skills', desc: 'Display technical skills' },
-        { cmd: 'contact', desc: 'Open contact form' },
-      ]
+        { cmd: "about", desc: "Show information about me" },
+        { cmd: "projects", desc: "List all projects" },
+        {
+          cmd: "projects [filter]",
+          desc: "Filter projects (e.g., projects fintech)",
+        },
+        { cmd: "project [id]", desc: "View specific project details" },
+        { cmd: "skills", desc: "Display technical skills" },
+        { cmd: "contact", desc: "Open contact form" },
+      ],
     },
     {
-      category: 'Utilities',
+      category: "Utilities",
       items: [
-        { cmd: 'resume', desc: 'Download resume' },
-        { cmd: 'github', desc: 'Open GitHub profile' },
-        { cmd: 'linkedin', desc: 'Open LinkedIn profile' },
-        { cmd: 'email', desc: 'Copy email address' },
-        { cmd: 'theme [dark|light]', desc: 'Switch color theme' },
-        { cmd: 'clear', desc: 'Clear terminal' },
-        { cmd: 'history', desc: 'Show command history' },
-      ]
+        { cmd: "resume", desc: "Download resume" },
+        { cmd: "github", desc: "Open GitHub profile" },
+        { cmd: "linkedin", desc: "Open LinkedIn profile" },
+        { cmd: "email", desc: "Copy email address" },
+        { cmd: "theme [dark|light]", desc: "Switch color theme" },
+        { cmd: "clear", desc: "Clear terminal" },
+        { cmd: "history", desc: "Show command history" },
+      ],
     },
     {
-      category: 'Fun',
+      category: "Fun",
       items: [
-        { cmd: 'matrix', desc: 'Matrix rain animation' },
-        { cmd: 'fortune', desc: 'Get a random dev quote' },
-        { cmd: 'whoami', desc: 'About this terminal' },
-      ]
-    }
+        { cmd: "matrix", desc: "Matrix rain animation" },
+        { cmd: "fortune", desc: "Get a random dev quote" },
+        { cmd: "joke", desc: "Programming jokes" },
+        { cmd: "cowsay [text]", desc: "Make a cow say something" },
+        { cmd: "neofetch", desc: "System info display" },
+        { cmd: "coffee", desc: "Get some virtual coffee" },
+        { cmd: "hack", desc: "Feel like a hacker" },
+        { cmd: "weather", desc: "Check the weather" },
+        { cmd: "secret", desc: "???" },
+      ],
+    },
   ];
 
   return (
@@ -68,9 +77,13 @@ export default function HelpSection() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: catIndex * 0.05 + itemIndex * 0.02 }}
               >
-                <span className="text-[var(--primary)] w-36 shrink-0">{item.cmd}</span>
+                <span className="text-[var(--primary)] w-36 shrink-0">
+                  {item.cmd}
+                </span>
                 <span className="text-[var(--foreground-dim)]">→</span>
-                <span className="text-[var(--foreground-muted)]">{item.desc}</span>
+                <span className="text-[var(--foreground-muted)]">
+                  {item.desc}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -85,13 +98,22 @@ export default function HelpSection() {
         transition={{ delay: 0.3 }}
       >
         <div className="flex flex-wrap gap-x-4 gap-y-1">
-          <span><span className="text-[var(--foreground-muted)]">↑↓</span> history</span>
-          <span><span className="text-[var(--foreground-muted)]">Tab</span> autocomplete</span>
-          <span><span className="text-[var(--foreground-muted)]">Ctrl+C</span> cancel</span>
-          <span><span className="text-[var(--warning)]">clear</span> reset</span>
+          <span>
+            <span className="text-[var(--foreground-muted)]">↑↓</span> history
+          </span>
+          <span>
+            <span className="text-[var(--foreground-muted)]">Tab</span>{" "}
+            autocomplete
+          </span>
+          <span>
+            <span className="text-[var(--foreground-muted)]">Ctrl+C</span>{" "}
+            cancel
+          </span>
+          <span>
+            <span className="text-[var(--warning)]">clear</span> reset
+          </span>
         </div>
       </motion.div>
     </div>
   );
 }
-
