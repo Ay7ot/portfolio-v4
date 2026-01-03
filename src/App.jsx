@@ -6,7 +6,30 @@ import { RotateCcw } from "lucide-react";
 export default function App() {
   const [theme, setTheme] = useState("dark");
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const [windowState, setWindowState] = useState("normal"); // normal, minimized, maximized, closed
+
+  // Detect mobile and set initial state
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      return mobile;
+    };
+
+    // Set initial state based on screen size
+    if (checkMobile()) {
+      setWindowState("maximized");
+    }
+
+    // Listen for resize events
+    const handleResize = () => {
+      checkMobile();
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Apply theme to document
   useEffect(() => {
@@ -26,7 +49,8 @@ export default function App() {
   };
 
   const handleReopen = () => {
-    setWindowState("normal");
+    // Reopen to maximized on mobile, normal on desktop
+    setWindowState(isMobile ? "maximized" : "normal");
   };
 
   return (
