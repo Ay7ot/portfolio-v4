@@ -1,33 +1,59 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { X, Minus, Maximize2 } from "lucide-react";
 
-export default function TitleBar() {
+export default function TitleBar({ onClose, onMinimize, onMaximize, isMaximized }) {
   const [hovered, setHovered] = useState(null);
 
   const buttons = [
-    { color: 'bg-[#f38ba8]', hoverColor: 'bg-[#f38ba8]', label: 'close' },
-    { color: 'bg-[#f9e2af]', hoverColor: 'bg-[#f9e2af]', label: 'minimize' },
-    { color: 'bg-[#a6e3a1]', hoverColor: 'bg-[#a6e3a1]', label: 'maximize' },
+    { 
+      color: "bg-[#f38ba8]", 
+      label: "close", 
+      icon: X,
+      onClick: onClose 
+    },
+    { 
+      color: "bg-[#f9e2af]", 
+      label: "minimize", 
+      icon: Minus,
+      onClick: onMinimize 
+    },
+    { 
+      color: "bg-[#a6e3a1]", 
+      label: "maximize", 
+      icon: Maximize2,
+      onClick: onMaximize 
+    },
   ];
 
   return (
-    <div 
+    <div
       className="flex items-center gap-4 px-4 py-3 bg-[var(--background-secondary)] border-b border-[var(--foreground-dim)]/10"
       onMouseLeave={() => setHovered(null)}
     >
       {/* Window Controls */}
       <div className="flex items-center gap-2">
         {buttons.map((btn, i) => (
-          <motion.div
+          <motion.button
             key={btn.label}
-            className={`w-3 h-3 rounded-full ${btn.color} cursor-pointer transition-all duration-200`}
+            className={`w-3 h-3 rounded-full ${btn.color} cursor-pointer transition-all duration-200 flex items-center justify-center`}
             onMouseEnter={() => setHovered(i)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            onClick={btn.onClick}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
             style={{
-              opacity: hovered !== null ? (hovered === i ? 1 : 0.5) : 0.8
+              opacity: hovered !== null ? (hovered === i ? 1 : 0.5) : 0.8,
             }}
-          />
+            title={btn.label.charAt(0).toUpperCase() + btn.label.slice(1)}
+          >
+            {hovered === i && (
+              <btn.icon 
+                size={8} 
+                className="text-[var(--background-tertiary)]" 
+                strokeWidth={3}
+              />
+            )}
+          </motion.button>
         ))}
       </div>
 
@@ -38,6 +64,9 @@ export default function TitleBar() {
           <span>ayomide</span>
           <span className="text-[var(--foreground-dim)]">—</span>
           <span className="text-[var(--accent)]">portfolio</span>
+          {isMaximized && (
+            <span className="text-[var(--foreground-dim)] text-xs ml-2">(fullscreen)</span>
+          )}
         </div>
       </div>
 
@@ -46,4 +75,3 @@ export default function TitleBar() {
     </div>
   );
 }
-

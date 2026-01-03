@@ -1,11 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
-import TerminalWindow from './TerminalWindow';
-import OutputArea from './OutputArea';
-import InputLine from './InputLine';
-import WelcomeSection from '../sections/WelcomeSection';
-import useCommands from '../../hooks/useCommands';
+import { useState, useEffect, useCallback } from "react";
+import TerminalWindow from "./TerminalWindow";
+import OutputArea from "./OutputArea";
+import InputLine from "./InputLine";
+import WelcomeSection from "../sections/WelcomeSection";
+import useCommands from "../../hooks/useCommands";
 
-export default function Terminal({ theme, setTheme }) {
+export default function Terminal({
+  theme,
+  setTheme,
+  windowState,
+  onWindowStateChange,
+}) {
   const [messages, setMessages] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -14,45 +19,72 @@ export default function Terminal({ theme, setTheme }) {
     setMessages([]);
   }, []);
 
-  const { executeCommand, addMessage } = useCommands({
+  const { executeCommand } = useCommands({
     setMessages,
     setTheme,
     theme,
-    clearMessages
+    clearMessages,
   });
 
   // Initialize with welcome message
   useEffect(() => {
     const timer = setTimeout(() => {
-      setMessages([{
-        id: 'welcome',
-        type: 'output',
-        content: <WelcomeSection />,
-        timestamp: new Date()
-      }]);
+      setMessages([
+        {
+          id: "welcome",
+          type: "output",
+          content: <WelcomeSection />,
+          timestamp: new Date(),
+        },
+      ]);
     }, 300);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleCommand = useCallback(async (input) => {
-    // Add to history
-    setCommandHistory(prev => [...prev, input]);
-    
-    // Execute command
-    setIsProcessing(true);
-    
-    // Small delay for effect
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
-    executeCommand(input);
-    
-    setIsProcessing(false);
-  }, [executeCommand]);
+  const handleCommand = useCallback(
+    async (input) => {
+      // Add to history
+      setCommandHistory((prev) => [...prev, input]);
+
+      // Execute command
+      setIsProcessing(true);
+
+      // Small delay for effect
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      executeCommand(input);
+
+      setIsProcessing(false);
+    },
+    [executeCommand]
+  );
+
+  const handleClose = useCallback(() => {
+    onWindowStateChange("closed");
+  }, [onWindowStateChange]);
+
+  const handleMinimize = useCallback(() => {
+    onWindowStateChange(windowState === "minimized" ? "normal" : "minimized");
+  }, [onWindowStateChange, windowState]);
+
+  const handleMaximize = useCallback(() => {
+    onWindowStateChange(windowState === "maximized" ? "normal" : "maximized");
+  }, [onWindowStateChange, windowState]);
+
+  const handleRestore = useCallback(() => {
+    onWindowStateChange("normal");
+  }, [onWindowStateChange]);
 
   return (
-    <TerminalWindow>
+    <TerminalWindow
+      windowState={windowState}
+      onClose={handleClose}
+      onMinimize={handleMinimize}
+      onMaximize={handleMaximize}
+      onRestore={handleRestore}
+    >
       <OutputArea messages={messages} />
-      <InputLine 
+      <InputLine
         onCommand={handleCommand}
         commandHistory={commandHistory}
         disabled={isProcessing}
@@ -60,4 +92,3 @@ export default function Terminal({ theme, setTheme }) {
     </TerminalWindow>
   );
 }
-

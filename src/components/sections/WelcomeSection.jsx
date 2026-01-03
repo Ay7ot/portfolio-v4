@@ -37,7 +37,7 @@ export default function WelcomeSection() {
           <span className="text-[var(--primary)] font-semibold">
             Ayomide Ibiteye
           </span>
-          , a Frontend Developer crafting exceptional digital experiences.
+          , a Software Engineer crafting exceptional digital experiences.
         </p>
       </motion.div>
 
