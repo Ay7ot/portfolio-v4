@@ -85,12 +85,17 @@ export default function InputLine({ onCommand, commandHistory, disabled }) {
       animate={{ opacity: 1 }}
       transition={{ delay: 0.3 }}
     >
-      {/* Prompt */}
-      <div className="flex items-center gap-1 text-sm md:text-sm shrink-0">
-        <span className="text-[var(--success)] hidden sm:inline">visitor</span>
-        <span className="text-[var(--foreground-dim)] hidden sm:inline">@</span>
+      {/* Prompt - Claude Code style */}
+      <div className="flex items-center gap-1 text-sm shrink-0 font-mono">
+        <span className="text-[var(--foreground-muted)]">[</span>
+        <span className="text-[var(--success)]">user</span>
+        <span className="text-[var(--foreground-muted)]">@</span>
         <span className="text-[var(--primary)]">portfolio</span>
-        <ChevronRight size={14} className="text-[var(--accent)] ml-1" />
+        <span className="text-[var(--foreground-muted)] hidden sm:inline">
+          {" "}
+          ~
+        </span>
+        <span className="text-[var(--foreground-muted)]">]$</span>
       </div>
 
       {/* Input */}

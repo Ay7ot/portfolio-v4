@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { GitBranch, Clock, Terminal, Zap } from 'lucide-react';
 import { formatDate } from '../../lib/utils';
 
 export default function StatusLine() {
@@ -13,34 +12,36 @@ export default function StatusLine() {
   }, []);
 
   return (
-    <div className="flex items-center justify-between px-4 py-2 bg-[var(--background-secondary)] border-t border-[var(--foreground-dim)]/10 text-xs">
-      {/* Left side */}
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5 text-[var(--success)]">
-          <Terminal size={12} />
-          <span>portfolio</span>
+    <div className="flex items-center justify-between px-3 py-1.5 bg-[var(--background-secondary)] border-t border-[var(--foreground-dim)]/10 text-xs font-mono">
+      {/* Left side - Mode indicator */}
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 text-[var(--foreground-muted)]">
+          <span className="text-[var(--success)]">●</span>
+          <span>NORMAL</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[var(--primary)]">
-          <GitBranch size={12} />
-          <span>main</span>
+        <div className="hidden sm:flex items-center gap-1.5 text-[var(--foreground-dim)]">
+          <span>⎇</span>
+          <span className="text-[var(--primary)]">main</span>
         </div>
       </div>
 
-      {/* Center */}
+      {/* Center - Model info like Claude Code */}
       <div className="flex items-center gap-1.5 text-[var(--accent)]">
-        <Zap size={12} />
-        <span>Claude Code Inspired</span>
+        <span>◆</span>
+        <span className="hidden sm:inline">claude-portfolio</span>
+        <span className="sm:hidden">v4</span>
       </div>
 
       {/* Right side */}
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5 text-[var(--foreground-muted)]">
-          <Clock size={12} />
-          <span>{time}</span>
+      <div className="flex items-center gap-3 text-[var(--foreground-dim)]">
+        <span className="hidden sm:inline">{time}</span>
+        <div className="flex items-center gap-1">
+          <span className="text-[var(--success)]">↑↓</span>
+          <span>history</span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse" />
-          <span className="text-[var(--foreground-dim)]">ready</span>
+        <div className="hidden sm:flex items-center gap-1">
+          <span className="text-[var(--warning)]">⇥</span>
+          <span>tab</span>
         </div>
       </div>
     </div>

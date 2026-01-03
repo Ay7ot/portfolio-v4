@@ -57,15 +57,13 @@ export default function TitleBar({ onClose, onMinimize, onMaximize, isMaximized 
         ))}
       </div>
 
-      {/* Title */}
+      {/* Title - More terminal-like */}
       <div className="flex-1 flex items-center justify-center">
-        <div className="flex items-center gap-2 text-[var(--foreground-muted)] text-sm">
-          <span className="text-[var(--primary)]">~/</span>
-          <span>ayomide</span>
-          <span className="text-[var(--foreground-dim)]">—</span>
-          <span className="text-[var(--accent)]">portfolio</span>
+        <div className="flex items-center gap-1 text-[var(--foreground-muted)] text-sm font-mono">
+          <span className="text-[var(--foreground-dim)]">ayomide@portfolio:</span>
+          <span className="text-[var(--primary)]">~</span>
           {isMaximized && (
-            <span className="text-[var(--foreground-dim)] text-xs ml-2">(fullscreen)</span>
+            <span className="text-[var(--foreground-dim)] text-xs ml-2">[fullscreen]</span>
           )}
         </div>
       </div>

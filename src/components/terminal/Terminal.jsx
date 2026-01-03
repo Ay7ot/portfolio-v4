@@ -46,12 +46,27 @@ export default function Terminal({
       // Add to history
       setCommandHistory((prev) => [...prev, input]);
 
-      // Execute command
+      // Show thinking indicator - Claude Code style
       setIsProcessing(true);
 
-      // Small delay for effect
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      // Add a "thinking" message
+      const thinkingId = `thinking-${Date.now()}`;
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: thinkingId,
+          type: "thinking",
+          content: "Processing...",
+          command: input,
+          timestamp: new Date(),
+        },
+      ]);
 
+      // Small delay for effect
+      await new Promise((resolve) => setTimeout(resolve, 150));
+
+      // Remove thinking message and execute command
+      setMessages((prev) => prev.filter((m) => m.id !== thinkingId));
       executeCommand(input);
 
       setIsProcessing(false);

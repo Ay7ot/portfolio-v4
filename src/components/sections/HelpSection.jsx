@@ -36,42 +36,40 @@ export default function HelpSection() {
   ];
 
   return (
-    <div className="space-y-4">
-      {/* Header */}
+    <div className="space-y-3 font-mono text-sm">
+      {/* Header - Claude Code style */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        className="flex items-center gap-2"
       >
-        <pre className="text-[var(--foreground)] text-sm">
-Available Commands:
-        </pre>
-        <pre className="text-[var(--foreground-dim)] text-xs">
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        </pre>
+        <span className="text-[var(--success)]">◆</span>
+        <span className="text-[var(--foreground)]">Available Commands</span>
       </motion.div>
 
       {/* Command Categories */}
       {commands.map((category, catIndex) => (
         <motion.div
           key={category.category}
-          className="space-y-2"
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: catIndex * 0.1 }}
+          className="space-y-1"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: catIndex * 0.05 }}
         >
-          <h3 className="text-sm font-semibold text-[var(--primary)]">
-            {category.category}:
-          </h3>
-          <div className="space-y-1 pl-2">
+          <div className="text-[var(--foreground-dim)] text-xs uppercase tracking-wider">
+            ─ {category.category}
+          </div>
+          <div className="space-y-0.5 pl-2">
             {category.items.map((item, itemIndex) => (
               <motion.div
                 key={item.cmd}
-                className="flex items-start gap-4 text-sm"
+                className="flex items-start gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: catIndex * 0.1 + itemIndex * 0.03 }}
+                transition={{ delay: catIndex * 0.05 + itemIndex * 0.02 }}
               >
-                <code className="text-[var(--warning)] w-32 shrink-0">{item.cmd}</code>
+                <span className="text-[var(--primary)] w-36 shrink-0">{item.cmd}</span>
+                <span className="text-[var(--foreground-dim)]">→</span>
                 <span className="text-[var(--foreground-muted)]">{item.desc}</span>
               </motion.div>
             ))}
@@ -79,22 +77,19 @@ Available Commands:
         </motion.div>
       ))}
 
-      {/* Divider */}
-      <pre className="text-[var(--foreground-dim)] text-xs">
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      </pre>
-
-      {/* Tips */}
+      {/* Shortcuts - Claude Code style */}
       <motion.div
-        className="text-xs text-[var(--foreground-dim)] space-y-1"
+        className="pt-2 border-t border-[var(--foreground-dim)]/10 text-xs text-[var(--foreground-dim)]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.3 }}
       >
-        <p>💡 Tips:</p>
-        <p>  • Use <span className="text-[var(--primary)]">↑/↓</span> to navigate command history</p>
-        <p>  • Press <span className="text-[var(--primary)]">Tab</span> for auto-completion</p>
-        <p>  • Type any command followed by <span className="text-[var(--warning)]">--help</span> for more info</p>
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
+          <span><span className="text-[var(--foreground-muted)]">↑↓</span> history</span>
+          <span><span className="text-[var(--foreground-muted)]">Tab</span> autocomplete</span>
+          <span><span className="text-[var(--foreground-muted)]">Ctrl+C</span> cancel</span>
+          <span><span className="text-[var(--warning)]">clear</span> reset</span>
+        </div>
       </motion.div>
     </div>
   );
