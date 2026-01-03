@@ -426,10 +426,15 @@ body {
   pointer-events: none;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility - exclude command input */
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+/* Remove focus outline from command input to keep terminal clean */
+input[type="text"]:focus-visible {
+  outline: none;
 }
 
 /* ==========================================
