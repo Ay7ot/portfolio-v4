@@ -107,7 +107,7 @@ export default function InputLine({ onCommand, commandHistory, disabled }) {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={disabled}
-          className="w-full bg-transparent text-[var(--foreground)] text-base outline-none caret-[var(--accent)] placeholder:text-[var(--foreground-dim)]/50"
+          className="w-full bg-transparent text-[var(--foreground)] text-xs sm:text-base outline-none caret-[var(--accent)] placeholder:text-[var(--foreground-dim)]/50"
           placeholder={
             disabled ? "Processing..." : 'Type a command... (try "help")'
           }
