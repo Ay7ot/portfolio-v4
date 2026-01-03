@@ -85,7 +85,7 @@ export default function ContactSection() {
               onFocus={() => setFocusedField('name')}
               onBlur={() => setFocusedField(null)}
               placeholder="John Doe"
-              className="flex-1 bg-transparent text-sm text-[var(--foreground)] outline-none placeholder:text-[var(--foreground-dim)]"
+              className="flex-1 bg-transparent text-base text-[var(--foreground)] outline-none placeholder:text-[var(--foreground-dim)]"
               disabled={status === 'sending'}
             />
             {focusedField === 'name' && (
@@ -111,7 +111,7 @@ export default function ContactSection() {
               onFocus={() => setFocusedField('email')}
               onBlur={() => setFocusedField(null)}
               placeholder="john@example.com"
-              className="flex-1 bg-transparent text-sm text-[var(--foreground)] outline-none placeholder:text-[var(--foreground-dim)]"
+              className="flex-1 bg-transparent text-base text-[var(--foreground)] outline-none placeholder:text-[var(--foreground-dim)]"
               disabled={status === 'sending'}
             />
             {focusedField === 'email' && (
@@ -138,7 +138,7 @@ export default function ContactSection() {
                 onBlur={() => setFocusedField(null)}
                 placeholder="Tell me about your project..."
                 rows={4}
-                className="flex-1 bg-transparent text-sm text-[var(--foreground)] outline-none placeholder:text-[var(--foreground-dim)] resize-none"
+                className="flex-1 bg-transparent text-base text-[var(--foreground)] outline-none placeholder:text-[var(--foreground-dim)] resize-none"
                 disabled={status === 'sending'}
               />
             </div>

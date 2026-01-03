@@ -264,10 +264,123 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--foreground-dim);
   border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--foreground-muted);
+}
+
+/* Smooth scrolling for all containers */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+/* Hardware acceleration for better performance */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Optimize animations for better frame rate */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  /* Prevent zoom on input focus - ensure all inputs are at least 16px */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  /* Better mobile viewport handling */
+  body {
+    min-height: 100dvh;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
+  }
+
+  /* Optimize terminal for mobile */
+  .terminal-glow {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Reduce padding on mobile */
+  .p-4 {
+    padding: 0.75rem !important;
+  }
+
+  /* Better touch targets - exclude small UI elements */
+  button:not(.window-control),
+  a:not(.inline-link) {
+    min-height: 44px;
+  }
+
+  /* Smoother scrolling on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  /* Prevent pull-to-refresh on mobile */
+  html,
+  body {
+    overscroll-behavior-y: contain;
+  }
+
+  /* Better terminal scrolling on mobile */
+  .overflow-y-auto {
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mobile-friendly prompt */
+  .text-sm {
+    font-size: 0.875rem;
+  }
+
+  /* Adjust spacing for mobile */
+  .space-y-4 > * + * {
+    margin-top: 0.75rem !important;
+  }
+
+  /* Make terminal fullscreen on mobile when maximized */
+  .fixed.inset-0 {
+    border-radius: 0 !important;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
 }
 
 /* ==========================================

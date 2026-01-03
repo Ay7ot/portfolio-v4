@@ -36,7 +36,7 @@ export default function TitleBar({ onClose, onMinimize, onMaximize, isMaximized 
         {buttons.map((btn, i) => (
           <motion.button
             key={btn.label}
-            className={`w-3 h-3 rounded-full ${btn.color} cursor-pointer transition-all duration-200 flex items-center justify-center`}
+            className={`window-control w-3 h-3 rounded-full ${btn.color} cursor-pointer transition-all duration-200 flex items-center justify-center !min-h-0 !min-w-0`}
             onMouseEnter={() => setHovered(i)}
             onClick={btn.onClick}
             whileHover={{ scale: 1.2 }}

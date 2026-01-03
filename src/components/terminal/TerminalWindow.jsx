@@ -16,20 +16,23 @@ export default function TerminalWindow({
   const isMinimized = windowState === "minimized";
 
   // Animation variants for different states
+  // Use window.innerHeight for better mobile support
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   const variants = {
     normal: {
       opacity: 1,
       y: 0,
       scale: 1,
-      height: "85vh",
+      height: isMobile ? "90dvh" : "85dvh",
       width: "100%",
-      borderRadius: "12px",
+      borderRadius: isMobile ? "8px" : "12px",
     },
     maximized: {
       opacity: 1,
       y: 0,
       scale: 1,
-      height: "100vh",
+      height: "100dvh",
       width: "100vw",
       borderRadius: "0px",
     },
@@ -38,7 +41,7 @@ export default function TerminalWindow({
       y: 0,
       scale: 1,
       height: "48px",
-      width: "300px",
+      width: isMobile ? "200px" : "300px",
       borderRadius: "12px",
     },
   };
@@ -48,14 +51,14 @@ export default function TerminalWindow({
       initial={{ opacity: 0, y: 20, scale: 0.98 }}
       animate={variants[windowState]}
       transition={{
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1],
-        height: { duration: 0.3 },
-        width: { duration: 0.3 },
-        borderRadius: { duration: 0.2 },
+        duration: 0.25,
+        ease: "easeInOut",
+        height: { duration: 0.2 },
+        width: { duration: 0.2 },
+        borderRadius: { duration: 0.15 },
       }}
       className={cn(
-        "relative flex flex-col",
+        "relative flex flex-col gpu-accelerated",
         "bg-[var(--background)] overflow-hidden",
         "terminal-glow border border-[var(--foreground-dim)]/20",
         isMaximized ? "fixed inset-0 z-50 max-w-none" : "max-w-5xl",

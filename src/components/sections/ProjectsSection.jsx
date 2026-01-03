@@ -66,10 +66,14 @@ export default function ProjectsSection({ filter, projectId }) {
 function ProjectCard({ project, index }) {
   return (
     <motion.div
-      className="p-4 bg-[var(--background-secondary)] rounded-lg border border-[var(--foreground-dim)]/10 hover:border-[var(--primary)]/30 transition-all duration-200 group"
+      className="p-4 bg-[var(--background-secondary)] rounded-lg border border-[var(--foreground-dim)]/10 hover:border-[var(--primary)]/30 transition-all duration-200 group gpu-accelerated"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
+      transition={{ 
+        delay: index * 0.03,
+        duration: 0.3,
+        ease: "easeOut"
+      }}
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 min-w-0">

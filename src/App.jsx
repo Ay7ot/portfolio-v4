@@ -31,8 +31,8 @@ export default function App() {
 
   return (
     <div
-      className={`min-h-screen bg-[var(--background-tertiary)] flex items-center justify-center transition-all duration-300 ${
-        windowState === "maximized" ? "p-0" : "p-4 sm:p-8"
+      className={`min-h-[100dvh] bg-[var(--background-tertiary)] flex items-center justify-center transition-all duration-300 ${
+        windowState === "maximized" ? "p-0" : "p-2 sm:p-4 md:p-8"
       }`}
     >
       {/* Background Pattern */}
