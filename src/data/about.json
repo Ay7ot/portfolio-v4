@@ -1,0 +1,23 @@
+{
+  "name": "Ayomide Ibiteye",
+  "title": "Frontend Developer",
+  "location": "Nigeria",
+  "tagline": "Building exceptional digital experiences",
+  "bio": [
+    "Hey there! I'm Ayomide, a passionate frontend developer with a love for creating beautiful, functional, and user-centered digital experiences.",
+    "I specialize in React and the modern JavaScript ecosystem, building everything from SaaS platforms to developer tools. My work focuses on clean code, intuitive interfaces, and solving real-world problems.",
+    "When I'm not coding, you'll find me exploring new technologies, contributing to open source, or working on side projects that push my skills further."
+  ],
+  "highlights": [
+    "🚀 Built 13+ production applications",
+    "⚛️ React & TypeScript specialist",
+    "🎨 UI/UX focused development",
+    "🌍 Building for Africa and beyond"
+  ],
+  "social": {
+    "github": "https://github.com/Ay7ot",
+    "linkedin": "https://linkedin.com/in/ayomide-ibiteye",
+    "twitter": "https://twitter.com/ay7ot",
+    "email": "ayomideibiteye@gmail.com"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "categories": [
+    {
+      "name": "Frontend Development",
+      "skills": [
+        { "name": "React", "level": 95, "icon": "⚛️" },
+        { "name": "TypeScript", "level": 90, "icon": "📘" },
+        { "name": "Next.js", "level": 88, "icon": "▲" },
+        { "name": "TailwindCSS", "level": 92, "icon": "🎨" },
+        { "name": "JavaScript", "level": 95, "icon": "⚡" },
+        { "name": "HTML/CSS", "level": 95, "icon": "🌐" }
+      ]
+    },
+    {
+      "name": "Backend Development",
+      "skills": [
+        { "name": "Node.js", "level": 85, "icon": "🟢" },
+        { "name": "Python", "level": 75, "icon": "🐍" },
+        { "name": "PostgreSQL", "level": 78, "icon": "🐘" },
+        { "name": "MongoDB", "level": 80, "icon": "🍃" },
+        { "name": "REST APIs", "level": 88, "icon": "🔌" },
+        { "name": "Firebase", "level": 85, "icon": "🔥" }
+      ]
+    },
+    {
+      "name": "Tools & Platforms",
+      "skills": [
+        { "name": "Git", "level": 92, "icon": "📦" },
+        { "name": "Docker", "level": 70, "icon": "🐳" },
+        { "name": "Vercel", "level": 88, "icon": "▲" },
+        { "name": "Figma", "level": 75, "icon": "🎨" },
+        { "name": "VS Code", "level": 95, "icon": "💻" },
+        { "name": "Linux", "level": 72, "icon": "🐧" }
+      ]
+    },
+    {
+      "name": "Other Skills",
+      "skills": [
+        { "name": "UI/UX Design", "level": 80, "icon": "✨" },
+        { "name": "Web3/Blockchain", "level": 65, "icon": "⛓️" },
+        { "name": "PWA", "level": 78, "icon": "📱" },
+        { "name": "Testing", "level": 72, "icon": "🧪" },
+        { "name": "CI/CD", "level": 70, "icon": "🔄" },
+        { "name": "Agile/Scrum", "level": 80, "icon": "📋" }
+      ]
+    }
+  ]
+}
+
